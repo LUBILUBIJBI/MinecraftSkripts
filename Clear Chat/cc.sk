@@ -1,0 +1,7 @@
+command /cc:
+    permission: op
+    permission message: &cYou do not have permission to execute this command!
+    trigger:
+        loop 1000 times:
+            broadcast ""
+        broadcast "&cThe chat has been cleared by &e%player%&c!"

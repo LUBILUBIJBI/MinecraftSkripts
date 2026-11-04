@@ -1,0 +1,493 @@
+# =======================================================
+# LEGENDARY SWORDS SYSTEM (v1.26.2)
+# Includes One-Time Weapon Core System (Heart of the Sea), /lws & /resetswords
+# =======================================================
+
+# =======================================================
+# 1. ADMIN COMMAND: /lws (STATUS OF ALL SWORDS)
+# =======================================================
+
+command /lws:
+    trigger:
+        send "&e&l=== LEGENDARY SWORDS STATUS ===" to player
+        
+        if {crafted.yeti} is set:
+            send "&7- Sword of Yeti: &c[CRAFTED]" to player
+        else:
+            send "&7- Sword of Yeti: &a[AVAILABLE]" to player
+            
+        if {crafted.berserker} is set:
+            send "&7- Axe of Berserker: &c[CRAFTED]" to player
+        else:
+            send "&7- Axe of Berserker: &a[AVAILABLE]" to player
+            
+        if {crafted.tornado} is set:
+            send "&7- Tornado: &c[CRAFTED]" to player
+        else:
+            send "&7- Tornado: &a[AVAILABLE]" to player
+            
+        if {crafted.rost} is set:
+            send "&7- Rust: &c[CRAFTED]" to player
+        else:
+            send "&7- Rust: &a[AVAILABLE]" to player
+            
+        if {crafted.engel} is set:
+            send "&7- Angel Sword: &c[CRAFTED]" to player
+        else:
+            send "&7- Angel Sword: &a[AVAILABLE]" to player
+            
+        if {crafted.spider} is set:
+            send "&7- Spider: &c[CRAFTED]" to player
+        else:
+            send "&7- Spider: &a[AVAILABLE]" to player
+            
+        if {crafted.baguette} is set:
+            send "&7- Baguette: &c[CRAFTED]" to player
+        else:
+            send "&7- Baguette: &a[AVAILABLE]" to player
+            
+        if {crafted.spion} is set:
+            send "&7- Spy: &c[CRAFTED]" to player
+        else:
+            send "&7- Spy: &a[AVAILABLE]" to player
+            
+        if {crafted.blut} is set:
+            send "&7- Sword of Blood: &c[CRAFTED]" to player
+        else:
+            send "&7- Sword of Blood: &a[AVAILABLE]" to player
+            
+        send "&e&l=================================" to player
+
+
+# =======================================================
+# 2. ADMIN COMMAND: /resetswords (RESET ALL VARIABLES)
+# =======================================================
+
+command /resetswords:
+    permission: op
+    trigger:
+        delete {crafted.yeti}
+        delete {crafted.berserker}
+        delete {crafted.tornado}
+        delete {crafted.rost}
+        delete {crafted.engel}
+        delete {crafted.spider}
+        delete {crafted.baguette}
+        delete {crafted.spion}
+        delete {crafted.blut}
+        send "&c[Legendary] All crafting statuses and sword variables have been successfully reset!" to player
+        play sound "entity.player.levelup" with volume 1.0 and pitch 0.5 at location of player
+
+
+# =======================================================
+# 3. ADMIN COMMANDS: GIVE CORES (/kern...) [Heart of the Sea]
+# =======================================================
+
+command /kernyeti [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Sword of Yeti"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Sword of Yeti given to &e%{_target}%&a!" to player
+
+command /kernberserker [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Axe of Berserker"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Axe of Berserker given to &e%{_target}%&a!" to player
+
+command /kerntornado [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Tornado"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Tornado given to &e%{_target}%&a!" to player
+
+command /kernrost [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Rust"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Rust given to &e%{_target}%&a!" to player
+
+command /kernengel [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Angel Sword"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Angel Sword given to &e%{_target}%&a!" to player
+
+command /kernspider [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Spider"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Spider given to &e%{_target}%&a!" to player
+
+command /kernbaguette [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Baguette"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Baguette given to &e%{_target}%&a!" to player
+
+command /kernspion [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Spy"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Spy given to &e%{_target}%&a!" to player
+
+command /kernblut [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        set {_item} to 1 heart of the sea named "Core of Sword of Blood"
+        set line 1 of lore of {_item} to "&8[Legendary Core]"
+        give {_item} to {_target}
+        send "&a[Legendary] Core of Sword of Blood given to &e%{_target}%&a!" to player
+
+command /kernall [<player>]:
+    permission: op
+    trigger:
+        set {_target} to player
+        if arg-1 is set:
+            set {_target} to arg-1
+        execute console command "kernyeti %{_target}%"
+        execute console command "kernberserker %{_target}%"
+        execute console command "kerntornado %{_target}%"
+        execute console command "kernrost %{_target}%"
+        execute console command "kernengel %{_target}%"
+        execute console command "kernspider %{_target}%"
+        execute console command "kernbaguette %{_target}%"
+        execute console command "kernspion %{_target}%"
+        execute console command "kernblut %{_target}%"
+        send "&a[Legendary] You received all 9 weapon cores (Heart of the Sea)!" to {_target}
+
+
+# =======================================================
+# 4. WEAPON CORE RIGHT-CLICK SYSTEM (ONE-TIME SWORDS)
+# =======================================================
+
+on right click:
+    if name of player's tool starts with "Core of ":
+        if line 1 of lore of player's tool is "&8[Legendary Core]":
+            
+            # --- 1. Core of Sword of Yeti ---
+            if name of player's tool is "Core of Sword of Yeti":
+                cancel event
+                if {crafted.yeti} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.yeti} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 diamond sword named "Sword of Yeti"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received the Sword of Yeti!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 2. Core of Axe of Berserker ---
+            else if name of player's tool is "Core of Axe of Berserker":
+                cancel event
+                if {crafted.berserker} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.berserker} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 diamond sword named "Axe of Berserker"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received the Axe of Berserker!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 3. Core of Tornado ---
+            else if name of player's tool is "Core of Tornado":
+                cancel event
+                if {crafted.tornado} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.tornado} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 netherite sword named "Tornado"
+                    enchant {_item} with knockback 4
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received Tornado!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 4. Core of Rust ---
+            else if name of player's tool is "Core of Rust":
+                cancel event
+                if {crafted.rost} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.rost} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 iron sword named "Rust"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received Rust!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 5. Core of Angel Sword ---
+            else if name of player's tool is "Core of Angel Sword":
+                cancel event
+                if {crafted.engel} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.engel} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 diamond sword named "Angel Sword"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received the Angel Sword!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 6. Core of Spider ---
+            else if name of player's tool is "Core of Spider":
+                cancel event
+                if {crafted.spider} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.spider} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 diamond sword named "Spider"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received Spider!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 7. Core of Baguette ---
+            else if name of player's tool is "Core of Baguette":
+                cancel event
+                if {crafted.baguette} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.baguette} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 netherite sword named "Baguette"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received Baguette!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 8. Core of Spy ---
+            else if name of player's tool is "Core of Spy":
+                cancel event
+                if {crafted.spion} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.spion} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 diamond sword named "Spy"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received Spy!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+            # --- 9. Core of Sword of Blood ---
+            else if name of player's tool is "Core of Sword of Blood":
+                cancel event
+                if {crafted.blut} is set:
+                    send "&cSorry, this sword has already been crafted. Put it back into the crafting table to get your items back." to player
+                else:
+                    set {crafted.blut} to true
+                    remove 1 of player's tool from player's inventory
+                    set {_item} to 1 iron sword named "Sword of Blood"
+                    set line 1 of lore of {_item} to "&8[Legendary Weapon]"
+                    give {_item} to player
+                    send "&a[Legendary] You activated the core and received the Sword of Blood!" to player
+                    play sound "ui.toast.challenge_complete" with volume 1.0 and pitch 1.0 at location of player
+
+
+# =======================================================
+# 5. LEGENDARY SWORDS MECHANICS (1 TO 9)
+# =======================================================
+
+# -------------------------------------------------------
+# 1. SWORD OF YETI (Ice Sword)
+# -------------------------------------------------------
+on damage:
+    if attacker is a player:
+        if name of attacker's tool is "Sword of Yeti":
+            if line 1 of lore of attacker's tool is "&8[Legendary Weapon]":
+                if {stunned.%victim%} is not set:
+                    set {stunned.%victim%} to true
+                    set {_loc} to location of victim
+                    play sound "block.glass.break" with volume 0.8 and pitch 1.2 at location of victim
+                    
+                    loop 10 times:
+                        teleport victim to {_loc}
+                        wait 1 tick
+                        
+                    delete {stunned.%victim%}
+
+# -------------------------------------------------------
+# 2. AXE OF BERSERKER (Axe Sword)
+# -------------------------------------------------------
+on damage:
+    if attacker is a player:
+        if victim is a player:
+            if name of attacker's tool is "Axe of Berserker":
+                if line 1 of lore of attacker's tool is "&8[Legendary Weapon]":
+                    if victim is blocking:
+                        disable shield of victim for 5 seconds
+                        play sound "item.shield.break" with volume 1.0 and pitch 0.8 at location of victim
+                    if victim's offhand tool is shield:
+                        set victim's offhand tool to air
+                        disable shield of victim for 5 seconds
+                        play sound "item.shield.break" with volume 1.0 and pitch 0.8 at location of victim
+                    else if victim's main hand tool is shield:
+                        set victim's main hand tool to air
+                        disable shield of victim for 5 seconds
+                        play sound "item.shield.break" with volume 1.0 and pitch 0.8 at location of victim
+
+# -------------------------------------------------------
+# 3. TORNADO (Wind Sword)
+# -------------------------------------------------------
+on right click:
+    if player's tool is a netherite sword:
+        if name of player's tool is "Tornado":
+            if line 1 of lore of player's tool is "&8[Legendary Weapon]":
+                if {tornado.cooldown.%player%} is set:
+                    set {_waited} to difference between {tornado.cooldown.%player%} and now
+                    if {_waited} is less than 0.5 second:
+                        stop
+                set {tornado.cooldown.%player%} to now
+                make player shoot a wind charge at speed 1.5
+                play sound "entity.breeze.shoot" with volume 1.0 and pitch 1.0 at location of player
+
+# -------------------------------------------------------
+# 4. RUST (Poison Sword)
+# -------------------------------------------------------
+on damage:
+    if attacker is a player:
+        if name of attacker's tool is "Rust":
+            if line 1 of lore of attacker's tool is "&8[Legendary Weapon]":
+                if victim does not have poison:
+                    apply poison 1 to victim for 3 seconds
+                    play sound "entity.spider.hurt" with volume 0.6 and pitch 0.8 at location of victim
+
+# -------------------------------------------------------
+# 5. ANGEL SWORD (Light Sword)
+# -------------------------------------------------------
+on damage:
+    if attacker is a player:
+        if name of attacker's tool is "Angel Sword":
+            if line 1 of lore of attacker's tool is "&8[Legendary Weapon]":
+                if victim does not have glowing:
+                    apply glowing 1 to victim for 480 seconds
+                remove blindness from victim
+                apply blindness 1 to victim for 2 seconds
+                play sound "block.amethyst_block.chime" with volume 0.8 and pitch 1.5 at location of victim
+
+# -------------------------------------------------------
+# 6. SPIDER (Spider Sword)
+# -------------------------------------------------------
+on damage:
+    if attacker is a player:
+        if name of attacker's tool is "Spider":
+            if line 1 of lore of attacker's tool is "&8[Legendary Weapon]":
+                set block at location of victim to cobweb
+                apply slowness 2 to victim for 1 second
+                play sound "entity.spider.ambient" with volume 0.8 and pitch 1.0 at location of victim
+
+# -------------------------------------------------------
+# 7. BAGUETTE (Food Sword)
+# -------------------------------------------------------
+on damage:
+    if attacker is a player:
+        if name of attacker's tool is "Baguette":
+            if line 1 of lore of attacker's tool is "&8[Legendary Weapon]":
+                if {baguette.hit.cooldown.%attacker%} is set:
+                    set {_waited} to difference between {baguette.hit.cooldown.%attacker%} and now
+                    if {_waited} is less than 1 second:
+                        stop
+                set {baguette.hit.cooldown.%attacker%} to now
+                add 1 to food level of attacker
+                play sound "entity.generic.eat" with volume 0.5 and pitch 1.2 at location of attacker
+
+on right click:
+    if player's tool is a netherite sword:
+        if name of player's tool is "Baguette":
+            if line 1 of lore of player's tool is "&8[Legendary Weapon]":
+                if {baguette.milk.cooldown.%player%} is set:
+                    set {_waited} to difference between {baguette.milk.cooldown.%player%} and now
+                    if {_waited} is less than 5 seconds:
+                        send "&c[Baguette] Ability on cooldown! (%difference between 5 seconds and {_waited}%)" to player
+                        stop
+                set {baguette.milk.cooldown.%player%} to now
+                execute console command "effect clear %player%"
+                play sound "entity.generic.drink" with volume 1.0 and pitch 1.0 at location of player
+                send "&a[Baguette] All effects cleared!" to player
+
+# -------------------------------------------------------
+# 8. SPY (Ender Sword)
+# -------------------------------------------------------
+on right click:
+    if player's tool is a diamond sword:
+        if name of player's tool is "Spy":
+            if line 1 of lore of player's tool is "&8[Legendary Weapon]":
+                if {spion.cooldown.%player%} is set:
+                    set {_waited} to difference between {spion.cooldown.%player%} and now
+                    if {_waited} is less than 10 seconds:
+                        send "&c[Spy] Teleport on cooldown! (%difference between 10 seconds and {_waited}%)" to player
+                        stop
+                
+                set {_targetBlock} to targeted block of player
+                if {_targetBlock} is set:
+                    if distance between player and {_targetBlock} <= 150:
+                        set {spion.cooldown.%player%} to now
+                        play sound "entity.ender_dragon.flap" with volume 0.5 and pitch 1.5 at location of player
+                        teleport player to location above {_targetBlock}
+                        play sound "entity.enderman.teleport" with volume 1.0 and pitch 1.0 at location of player
+                        send "&a[Spy] Teleported!" to player
+                    else:
+                        send "&c[Spy] Target is too far away! (Max 150 blocks)" to player
+
+# -------------------------------------------------------
+# 9. SWORD OF BLOOD (Vampire Sword)
+# -------------------------------------------------------
+on damage:
+    if attacker is a player:
+        if name of attacker's tool is "Sword of Blood":
+            if line 1 of lore of attacker's tool is "&8[Legendary Weapon]":
+                chance of 50%:
+                    heal attacker by 0.5 hearts
+                    play sound "entity.witch.drink" with volume 0.5 and pitch 1.5 at location of player

@@ -1,0 +1,18 @@
+command /rename <text>:
+    permission: op
+    permission message: &cOnly OPs can rename items!
+    trigger:
+        # Check if the player is holding an item
+        if player's tool is air:
+            send "&cYou must be holding an item to rename it!" to player
+            stop
+            
+        # Format text with Lime color (&a)
+        set {_new_name} to "&a%arg-1%"
+        
+        # Rename the item in hand
+        set name of player's tool to {_new_name}
+        
+        # Confirmation message
+        send "&aItem successfully renamed to: %{_new_name}%" to player
+        play sound "entity.experience_orb.pickup" with volume 1 and pitch 1.5 to player

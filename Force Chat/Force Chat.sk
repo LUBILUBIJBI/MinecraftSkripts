@@ -1,0 +1,14 @@
+command /chat [<player>] [<text>]:
+    permission: op
+    permission message: &cYou are not allowed to do this!
+    trigger:
+        # Check if both arguments (player and text) are set
+        if arg-1 is not set:
+            send "&cPlease specify a player!"
+            stop
+        if arg-2 is not set:
+            send "&cWhat should the player say?"
+            stop
+        
+        # Force target player to chat
+        make arg-1 say arg-2

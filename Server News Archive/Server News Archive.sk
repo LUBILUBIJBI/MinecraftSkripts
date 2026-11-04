@@ -1,0 +1,83 @@
+# ==========================================
+# SERVER UPDATE ARCHIVE SYSTEM
+# ==========================================
+
+# COMMAND: Add new update
+command /updateset [<text>]:
+    permission: op
+    permission message: &cNo permissions!
+    trigger:
+        if arg-1 is not set:
+            send "&8[&6Update&8] &cUse: /updateset <Text>"
+            send "&7Tip: Use &e<nl> &7for line breaks."
+            stop
+        
+        # Shift existing updates back (slot 1 becomes free)
+        copy {news_archive::*} to {_temp::*}
+        clear {news_archive::*}
+        set {news_archive::1} to arg-1
+        
+        set {_i} to 2
+        loop {_temp::*}:
+            set {news_archive::%{_i}%} to loop-value
+            add 1 to {_i}
+            if {_i} > 54: # Limit to a double chest size
+                stop loop
+
+        send "&8[&6Update&8] &aNew update added to the top!"
+        play sound "block.note_block.chime" with volume 1 and pitch 1 to player
+
+# COMMAND: Edit existing update
+command /updateedit <number> <text>:
+    permission: op
+    trigger:
+        if {news_archive::%arg-1%} is not set:
+            send "&8[&6Update&8] &cEntry number %arg-1% does not exist!"
+            stop
+        
+        set {news_archive::%arg-1%} to arg-2
+        send "&8[&6Update&8] &aUpdate #%arg-1% was successfully modified."
+        play sound "ui.button.click" with volume 1 and pitch 2 to player
+
+# COMMAND: Open archive GUI
+command /update:
+    trigger:
+        if {news_archive::*} is not set:
+            send "&cThe archive is currently empty."
+            stop
+            
+        set {_gui} to chest inventory with 6 rows named "&6&lServer News Archive"
+        
+        set {_slot} to 0
+        loop {news_archive::*}:
+            # Linebreak logic
+            set {_lore::*} to loop-value split at "<nl>"
+            
+            # Set item in slot (Newest is slot 0)
+            set slot {_slot} of {_gui} to book named "&e&lUpdate #%loop-index%" with lore {_lore::*}
+            add 1 to {_slot}
+            
+            if {_slot} >= 54:
+                stop loop
+                
+        open {_gui} to player
+
+# EVENT: Prevent item removal & Copy feature
+on inventory click:
+    if name of event-inventory is "&6&lServer News Archive":
+        cancel event # Players cannot steal the books
+        
+        # Shift-Click prints text to chat for copying
+        if click type is left mouse button with shift:
+            set {_id} to index of event-slot + 1
+            send "&8&m----------------------------------------"
+            send "&7Text of Update #%{_id}%:"
+            send "%{news_archive::%{_id}%}%"
+            send "&8&m----------------------------------------"
+            close player's inventory
+
+# EVENT: Join notification
+on join:
+    wait 2 seconds
+    if {news_archive::1} is set:
+        send "&8[&6News&8] &7There are new updates! Use &e/update"
